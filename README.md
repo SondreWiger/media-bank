@@ -48,3 +48,4 @@ npm start
 - Miniatyrer bare for bilder. Andre filer får placeholder.
 - DB-fila ligger i `data/media.db`. Ta backup hvis ting er viktig.
 # media-bank
+# media-bank
