@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "NODE_ENV=development nodemon server.js",
-    "build": "node scripts/package.js"
+    "build": "node scripts/package.js",
+    "start:one": "sh -c 'test -d node_modules || npm ci --omit=dev; PORT=${PORT:-3000} NODE_ENV=${NODE_ENV:-production} node server.js'"
   },
   "author": "",
   "license": "MIT",

@@ -65,7 +65,10 @@ const outPkg = {
   version: pkg.version || '1.0.0',
   private: true,
   main: 'server.js',
-  scripts: { start: 'node server.js' },
+  scripts: {
+    start: 'node server.js',
+    'start:one': "sh -c 'test -d node_modules || npm ci --omit=dev; PORT=${PORT:-3000} NODE_ENV=${NODE_ENV:-production} node server.js'"
+  },
   dependencies: pkg.dependencies || {},
 };
 fs.writeFileSync(path.join(OUT, 'package.json'), JSON.stringify(outPkg, null, 2));
