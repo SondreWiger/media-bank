@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- sikkerhet, fordi vi er ikke komplett kaos -->
+  <title>Sikkerhet • Media Bank</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="color-scheme" content="dark light" />
+  <style>
+    .page { max-width: 900px; margin: 24px auto; padding: 0 18px; }
+    .card-page { background: var(--panel); border: 1px solid #1e2230; border-radius: 12px; padding: 18px; }
+    .breadcrumb { margin: 8px 0 16px; color: var(--muted); }
+    ol li { margin: 6px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo"><a href="/" style="color:inherit;text-decoration:none">Media Bank</a></div>
+      <div class="nav-actions">
+        <a class="button" href="/">Hjem</a>
+        <a class="button" href="/bank">Bank</a>
+        <a class="button" href="/about">Om</a>
+        <a class="button" href="/api-controls">API</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div class="breadcrumb">Hjem / Sikkerhet</div>
+    <div class="card-page">
+      <h1>Sikkerhet & Retningslinjer</h1>
+      <p>Noen tips for å holde Media Bank trygg og ikke sketchy.</p>
+      <h2>Personvern</h2>
+      <ol>
+        <li>Kjør lokalt eller bak VPN/proxy hvis du skal dele noe.</li>
+        <li>Legg på innlogging før du åpner for internett (seriøst).</li>
+        <li>Ikke last opp super-sensitive ting uten kryptering og tilgangsstyring.</li>
+      </ol>
+      <h2>Innhold</h2>
+      <ol>
+        <li>Respekter opphavsrett og lover (ja, det gjelder deg og).</li>
+        <li>Ikke last opp ulovlig eller skadelig innhold.</li>
+        <li>Bruk tags for å merke ting som bør håndteres ekstra forsiktig.</li>
+      </ol>
+      <h2>Lagring/Retensjon</h2>
+      <ol>
+        <li>Ta backup av `data/media.db` og hele `uploads/` jevnlig.</li>
+        <li>Lag en plan for å rydde bort gamle/uaktuelle filer.</li>
+        <li>Vurder skylagring med automatiske «life-cycle»-regler hvis du blir pro.</li>
+      </ol>
+    </div>
+  </main>
+</body>
+</html>

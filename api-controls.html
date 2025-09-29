@@ -1,0 +1,117 @@
+<!-- 
+API-kontroller
+Gir brukeren en interatkiv demonstrasjon av API endepunktene så man kan se hva som kommer ut av dem.
+og prøve dem. 
+
+(dokumentasjons side kommer snart. )
+
+-->
+
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API-kontroller • Media Bank</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="color-scheme" content="dark light" />
+  <style>
+    .page { max-width: 1000px; margin: 24px auto; padding: 0 18px; }
+    .row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end; }
+    .panel { background: var(--panel); border: 1px solid #1e2230; border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+    .out { white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: #0b0f17; border: 1px solid #1e2230; border-radius: 8px; padding: 10px; color: #cbd5e1; max-height: 320px; overflow: auto; }
+    label { font-size: 12px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo"><a href="/" style="color:inherit;text-decoration:none">Media Bank</a></div>
+      <div class="nav-actions">
+        <a class="button" href="/">Hjem</a>
+        <a class="button" href="/bank">Bank</a>
+        <a class="button" href="/about">Om</a>
+        <a class="button" href="/safety">Sikkerhet</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1>API-kontroller</h1>
+
+    <section class="panel">
+      <h3>Helsesjekk</h3>
+      <div class="row">
+        <div>
+          <label>GET /health</label>
+          <div><small>Ping serveren for å sjekke at den lever.</small></div>
+        </div>
+        <button class="button brand" id="btn-health">Kjør</button>
+      </div>
+      <div id="out-health" class="out" style="margin-top:10px"></div>
+    </section>
+
+    <section class="panel">
+      <h3>List media</h3>
+      <div class="row">
+        <div>
+          <label>GET /api/media</label>
+          <div style="display:flex; gap:8px; margin-top:6px">
+            <input id="q" placeholder="spørring" class="button" style="padding:8px 10px" />
+            <input id="type" placeholder="type (image|video)" class="button" style="padding:8px 10px" />
+            <select id="order" class="button" style="padding:8px 10px">
+              <option value="DESC">DESC</option>
+              <option value="ASC">ASC</option>
+            </select>
+          </div>
+        </div>
+        <button class="button brand" id="btn-media">Kjør</button>
+      </div>
+      <div id="out-media" class="out" style="margin-top:10px"></div>
+    </section>
+
+    <section class="panel">
+      <h3>Slett etter ID</h3>
+      <div class="row">
+        <div>
+          <label>DELETE /api/media/:id</label>
+          <div style="margin-top:6px">
+            <input id="del-id" placeholder="media-id" class="button" style="padding:8px 10px" />
+          </div>
+        </div>
+        <button class="button danger" id="btn-del">Slett</button>
+      </div>
+      <div id="out-del" class="out" style="margin-top:10px"></div>
+    </section>
+  </main>
+
+  <script>
+    // litt enkel visning av output
+    const out = (el, data) => {
+      el.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+    };
+    document.getElementById('btn-health').onclick = async () => {
+      const res = await fetch('/health');
+      out(document.getElementById('out-health'), await res.json());
+    };
+    document.getElementById('btn-media').onclick = async () => {
+      const url = new URL('/api/media', window.location.origin);
+      const q = document.getElementById('q').value.trim();
+      const type = document.getElementById('type').value.trim();
+      const order = document.getElementById('order').value;
+      if (q) url.searchParams.set('query', q);
+      if (type) url.searchParams.set('type', type);
+      url.searchParams.set('order', order);
+      const res = await fetch(url);
+      out(document.getElementById('out-media'), await res.json());
+    };
+    document.getElementById('btn-del').onclick = async () => {
+      const id = document.getElementById('del-id').value.trim();
+      if (!id) return alert('Skriv inn en ID');
+      if (!confirm('Dette sletter filen permanent. Fortsette?')) return;
+      const res = await fetch(`/api/media/${id}`, { method: 'DELETE' });
+      out(document.getElementById('out-del'), await res.json());
+    };
+  </script>
+</body>
+</html>

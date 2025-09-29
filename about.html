@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Om • Media Bank</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="color-scheme" content="dark light" />
+  <style>
+    .page { max-width: 900px; margin: 24px auto; padding: 0 18px; }
+    .card-page { background: var(--panel); border: 1px solid #1e2230; border-radius: 12px; padding: 18px; }
+    .breadcrumb { margin: 8px 0 16px; color: var(--muted); }
+    a.link { color: #9cc1ff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo"><a href="/" style="color:inherit;text-decoration:none">Media Bank</a></div>
+      <div class="nav-actions">
+        <a class="button" href="/">Hjem</a>
+        <a class="button" href="/bank">Bank</a>
+        <a class="button" href="/safety">Sikkerhet</a>
+        <a class="button" href="/api-controls">API</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div class="breadcrumb">Hjem / Om</div>
+    <div class="card-page">
+      <h1>Om</h1>
+      <p>Media Bank er en lett og selvhostet greie for å lagre og ordne bildene og filene dine. Den gir deg:</p>
+      <ul>
+        <li>Flere filer om gangen med auto-miniatyrer for bilder</li>
+        <li>Kjapp visning med responsivt rutenett</li>
+        <li>Enkel søk og tags for orden</li>
+        <li>Lagring lokalt som standard, men lett å flytte til skyen senere</li>
+      </ul>
+      <p>Stack: Node.js (Express, Multer, Sharp, better-sqlite3) + enkel frontend uten rammeverk. Funka bra.</p>
+    </div>
+  </main>
+</body>
+</html>

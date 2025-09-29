@@ -1,0 +1,311 @@
+/* Media Bank Styles (ja, mørk tema fordi det ser fresh ut) */
+:root {
+  --bg: #0f1115;
+  --panel: #151822;
+  --text: #e6e9ef;
+  --muted: #a4abb8;
+  --brand: #6aa1ff;
+  --accent: #22c55e;
+  --danger: #ef4444;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+/* basic layout, chill */
+body {
+  margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji";
+  background: linear-gradient(180deg, #0f1115, #0b0d12 60%);
+  color: var(--text);
+}
+/* sticky header så ting føles app-aktig */
+header {
+  position: sticky; 
+  top: 0; z-index: 20; 
+  backdrop-filter: blur(8px);
+  background: rgba(10,12,18,0.6); 
+  border-bottom: 1px solid #1e2230;
+}
+.navbar { 
+  max-width: 1100px;
+  margin: 0 auto; 
+  padding: 12px 18px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+}
+.logo { 
+  font-weight: 700; 
+  letter-spacing: .5px; 
+}
+
+main { 
+  max-width: 1100px; 
+  margin: 20px auto; 
+  padding: 0 18px 60px; 
+}
+
+/* kontrollpanel – søk + filtre osv */
+.controls {
+  display: grid; 
+  grid-template-columns: 1fr auto auto; 
+  gap: 10px; 
+  align-items: center;
+  background: var(--panel); 
+  border: 1px solid #1e2230; 
+  border-radius: 12px; 
+  padding: 14px;
+}
+.search input {
+  width: 100%; 
+  padding: 10px 12px; 
+  border-radius: 10px; 
+  border: 1px solid #2a3042; 
+  background: #0c0f16; 
+  color: var(--text);
+}
+.button { 
+  cursor: pointer; 
+  border: 1px solid #2a3042; 
+  background: #0c0f16; 
+  color: var(--text); 
+  padding: 10px 14px; 
+  border-radius: 10px; 
+}
+
+.button.brand { 
+  border-color: #25406f; 
+  background: #0e1624; 
+  color: #dbe8ff; 
+}
+
+.button.danger { 
+  border-color: #5a2130; 
+  background: #1a0f12; 
+  color: #ffd7db; 
+}
+
+.button:hover { 
+  filter: brightness(1.08); 
+}
+
+.upload input[type=file] {
+  display: none; 
+}
+
+.upload label { 
+  display: inline-block; 
+}
+
+/* grid for kort – auto-fill så det skalerer nice */
+.gallery { 
+  margin-top: 16px; 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+  gap: 12px; 
+}
+
+.card {
+  position: relative; 
+  overflow: hidden; 
+  border-radius: 12px; 
+  background: #0c0f16; 
+  border: 1px solid #1e2230;
+}
+
+.card .thumb { 
+  aspect-ratio: 1 / 1; 
+  width: 100%; 
+  object-fit: cover; 
+  display: block; 
+  background: #0a0d14;
+}
+
+.card .meta { 
+  padding: 10px; 
+  display: block; 
+  font-size: 12px; 
+  color: var(--muted); 
+}
+
+.card .name { 
+  color: var(--text); 
+  margin-bottom: 4px;
+  white-space: normal;
+  word-break: break-word;
+}
+.card .actions { 
+  display: flex; 
+  gap: 6px; 
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.tag { 
+  font-size: 11px; 
+  padding: 2px 6px; 
+  border-radius: 6px; 
+  border: 1px solid #2a3042; 
+  color: #b7c1d9; 
+  background: #0b0f17; 
+  margin-right: 6px; 
+}
+
+.footer { 
+  color: #778; 
+  font-size: 12px; 
+  text-align: center; 
+  margin-top: 26px; 
+}
+
+/* Site footer */
+footer.site-footer {
+  border-top: 1px solid #1e2230;
+  background: #0b0f17;
+  color: var(--muted);
+  margin-top: 40px;
+}
+footer.site-footer .inner {
+  max-width: 1100px; margin: 0 auto; padding: 18px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+footer.site-footer .links { display: flex; gap: 10px; flex-wrap: wrap; }
+footer.site-footer a { color: #9cc1ff; text-decoration: none; }
+
+/* Modal – stor forhåndsvisning */
+.modal { 
+  position: fixed; 
+  inset: 0; 
+  display: none; 
+  align-items: center; 
+  justify-content: center; 
+  background: rgba(0,0,0,.6); 
+}
+
+.modal.open { 
+  display: flex;
+}
+
+.modal .dialog { 
+  max-width: 90vw; 
+  max-height: 90vh; 
+  background: #0b0f17; 
+  border: 1px solid #1e2230; 
+  border-radius: 12px; 
+  overflow: hidden; 
+}
+
+.modal .dialog header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 10px 12px; 
+  border-bottom: 1px solid #1e2230; 
+  background: #0d111a; 
+}
+.modal .dialog .content { 
+  padding: 12px; 
+}
+
+.modal img { 
+  max-width: 80vw; 
+  max-height: 70vh; 
+  display: block; 
+}
+
+/* Selection visuals */
+.card.selected { 
+  outline: 2px solid var(--brand); 
+  outline-offset: -2px; 
+}
+
+.card .select-box { 
+  position: absolute; 
+  top: 8px; 
+  left: 8px; 
+  background: rgba(0,0,0,.5); 
+  border-radius: 6px; 
+  padding: 4px; 
+}
+
+/* Dropzone */
+.dropzone { 
+  margin-top: 14px; 
+  padding: 20px; 
+  text-align: center; 
+  border: 2px dashed #2a3042; 
+  border-radius: 12px; 
+  background: #0b0f17; 
+  color: var(--muted); 
+}
+
+.dropzone.dragover { 
+  background: #0e1422; 
+  border-color: var(--brand); 
+  color: #dbe8ff; 
+}
+
+/* Toasts */
+.toast { 
+  position: fixed; 
+  bottom: 18px; 
+  right: 18px; 
+  min-width: 200px; 
+  max-width: 360px; 
+  padding: 12px 14px; 
+  border-radius: 10px; 
+  background: #101826; 
+  border: 1px solid #20304a; 
+  color: #dbe8ff; 
+  box-shadow: 0 6px 30px rgba(0,0,0,.35);
+  opacity: 0; 
+  pointer-events: none; 
+  transform: translateY(12px); 
+  transition: opacity .2s, transform .2s; 
+}
+.toast.show { 
+  opacity: 1; 
+  pointer-events: auto; 
+  transform: translateY(0); 
+}
+
+/* Progress bar (optional, used in future enhancements) */
+.progress { 
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  height: 4px; 
+  background: #0f1522; 
+}
+
+  .progress > span { 
+    display: block; 
+    height: 100%; 
+    width: 0%; 
+    background: linear-gradient(90deg, var(--brand), #8ac7ff); 
+    transition: width .2s; 
+  }
+
+/* Folder cards & breadcrumb */
+.folder-card { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 16px 10px; cursor: pointer; }
+.folder-card:hover { filter: brightness(1.06); }
+.folder-box { font-size: 42px; line-height: 1; }
+.breadcrumb { font-size: 12px; }
+
+/* De-clutter controls on smaller screens */
+@media (max-width: 800px) {
+  .controls { grid-template-columns: 1fr; gap: 8px; }
+  .navbar { flex-wrap: wrap; gap: 8px; }
+}
+
+/* Context menu */
+.ctx-menu {
+  position: fixed; z-index: 50; min-width: 180px; border-radius: 10px;
+  background: #0b0f17; border: 1px solid #1e2230; box-shadow: 0 14px 40px rgba(0,0,0,.45);
+  padding: 6px; display: none;
+}
+.ctx-menu.open { display: block; }
+.ctx-menu button { width: 100%; text-align: left; border: none; background: transparent; color: var(--text); padding: 8px 10px; border-radius: 8px; cursor: pointer; }
+.ctx-menu button:hover { background: #0f1522; }
+.ctx-menu .danger { color: #ffd7db; }

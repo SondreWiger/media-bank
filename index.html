@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- startside, chill vibes -->
+  <title>Media Bank • Startside</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="description" content="Startside for Media Bank-appen" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2310181f'/><path d='M24 64l14-18 12 15 8-10 18 22H24z' fill='%23fff'/><circle cx='42' cy='36' r='6' fill='%23fff'/></svg>">
+  <style>
+    .hero { text-align:center; padding: 64px 18px; background: radial-gradient(1200px 400px at 50% -50%, #142032, transparent), linear-gradient(180deg, transparent, rgba(255,255,255,0.02) 50%, transparent 100%); border-bottom: 1px solid #1e2230; }
+    .hero h1 { font-size: 40px; margin: 0 0 12px; }
+    .hero p { color: var(--muted); margin: 0 0 22px; }
+    .cta { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+    .cards { max-width: 1100px; margin: 28px auto; padding: 0 18px; display:grid; gap:14px; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); }
+    .card-landing { background: var(--panel); border: 1px solid #1e2230; border-radius: 12px; padding: 18px; }
+    .card-landing h3 { margin: 4px 0 8px; }
+    .navbar .nav-actions { display:flex; gap:10px; }
+  </style>
+  
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Media Bank</div> <!-- ja, norsk men navn er kult som det er -->
+      <div class="nav-actions">
+        <a class="button" href="/bank">Åpne Bank</a>
+        <a class="button" href="/about">Om</a>
+        <a class="button" href="/safety">Sikkerhet</a>
+        <a class="button" href="/api-controls">API</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Din egen Media Bank</h1>
+      <p>Last opp, organiser og søk i media lokalt. Enkelt. Raskt. Privat.</p>
+      <div class="cta">
+        <a class="button brand" href="/bank">Gå til banken</a>
+        <a class="button" href="/about">Les mer</a>
+      </div>
+    </section>
+
+    <section class="cards">
+      <div class="card-landing">
+        <h3>Media Bank</h3>
+        <p>Last opp flere filer, få miniatyrer for bilder, søk på navn, legg til tags og slett ting.</p>
+        <a class="button" href="/bank">Åpne bank</a>
+      </div>
+      <div class="card-landing">
+        <h3>API-kontroller</h3>
+        <p>Test at serveren lever, spør på media, og sjekk svar rett i nettleseren.</p>
+        <a class="button" href="/api-controls">Gå til API</a>
+      </div>
+      <div class="card-landing">
+        <h3>Sikkerhet</h3>
+        <p>Litt om personvern, innhold og hva som er lurt å gjøre (og ikke).</p>
+        <a class="button" href="/safety">Les sikkerhet</a>
+      </div>
+      <div class="card-landing">
+        <h3>Om</h3>
+        <p>Hva appen er, hvordan den funker, og litt nerding om tech-stacken.</p>
+        <a class="button" href="/about">Om prosjektet</a>
+      </div>
+    </section>
+
+  </main>
+  
+</body>
+</html>

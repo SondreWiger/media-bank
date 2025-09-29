@@ -1,0 +1,130 @@
+<!-- 
+Selve banken, last opp, last ned, interager, og flytt filer. 
+
+-->
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media Bank</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <meta name="color-scheme" content="dark light" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo"><a href="/" style="color:inherit;text-decoration:none">Media Bank</a></div>
+      <div class="nav-actions">
+        <a class="button" href="/">Hjem</a>
+        <a class="button" href="/about">Om</a>
+        <a class="button" href="/safety">Sikkerhet</a>
+        <a class="button" href="/api-controls">API</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="breadcrumb" id="breadcrumb" style="margin:8px 0 10px; color: var(--muted);"></div>
+    <section id="folder-toolbar" style="display:none; margin:8px 0; background: var(--panel); border: 1px solid #1e2230; border-radius: 12px; padding: 10px; display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+      <div style="color:var(--muted); font-size:12px;">Valgt mappe:</div>
+      <button id="ft-open" class="button brand">Åpne</button>
+      <button id="ft-new" class="button">Ny undermappe</button>
+      <button id="ft-rename" class="button">Gi nytt navn</button>
+      <button id="ft-ips" class="button">IP-tilgang</button>
+      <button id="ft-delete" class="button danger">Slett mappe</button>
+    </section>
+    <section class="controls">
+      <div class="search">
+        <input id="search" type="search" placeholder="Søk på navn, tags..." />
+      </div>
+      <div style="display:flex; gap:8px;">
+        <select id="folder-select" class="button" title="Mappe">
+          <option value="">Alle mapper</option>
+        </select>
+        <button id="folder-new" class="button" title="Ny mappe">Ny mappe</button>
+        <button id="folder-ips" class="button" title="Tillatte IP-er">IP-tilgang</button>
+        <select id="filter-type" class="button">
+          <option value="">Alle typer</option>
+          <option value="image">Bilder</option>
+          <option value="video">Videoer</option>
+        </select>
+        <select id="sort-field" class="button">
+          <option value="created_at">Sorter: Nyeste</option>
+          <option value="size">Sorter: Størrelse</option>
+        </select>
+        <select id="sort-order" class="button">
+          <option value="DESC">DESC</option>
+          <option value="ASC">ASC</option>
+        </select>
+      </div>
+    </section>
+
+    <section style="margin-top:10px; background: var(--panel); border: 1px solid #1e2230; border-radius: 12px; padding: 10px; display:flex; gap:10px; align-items:center; flex-wrap: wrap;">
+      <div class="upload">
+        <input id="file-input" type="file" multiple />
+        <label for="file-input" class="button">Velg filer</label>
+      </div>
+      <button id="upload-btn" class="button brand"><i class="fa fa-cloud-upload-alt"></i> Last opp</button>
+      <div style="color:var(--muted); font-size:12px;">Eller dra og slipp filer i feltet under</div>
+    </section>
+
+    <section id="selection-toolbar" style="display:none; margin-top:8px; background: var(--panel); border: 1px solid #1e2230; border-radius: 12px; padding: 10px; display:flex; gap:8px; justify-content:flex-end;">
+        <button id="btn-select-all" class="button">Velg alle</button>
+        <button id="btn-clear-sel" class="button">Tøm</button>
+        <button id="btn-move-folder" class="button">Flytt til mappe</button>
+        <button id="btn-bulk-del" class="button danger">Slett valgte</button>
+    </section>
+
+    <section id="dropzone" class="dropzone" aria-label="Drop files to upload">
+      <div>Dra & slipp filer her for å laste opp, eller bruk «Velg filer»-knappen.</div>
+    </section>
+
+  <!-- DETTE ER GALERI VISNINGEN, IKKE SLETT WHAT SO EVER!!!-->
+    <section class="gallery" id="gallery"></section>
+
+    <div style="display:flex; justify-content:center; margin-top:14px;">
+      <button id="btn-load-more" class="button">Last inn mer</button>
+    </div>
+
+    <div class="footer">Tips: Klikk miniatyren for å se stort. Bruk «Tags» for å legge til lapper. Shift-klikk for å multivelge.</div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="dialog">
+      <header>
+        <div style="font-weight:600">Forhåndsvisning</div>
+        <button id="modal-close" class="button">Lukk</button>
+      </header>
+      <div class="content">
+        <img id="modal-image" alt="Preview" />
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <div id="ctx-menu" class="ctx-menu" role="menu" aria-hidden="true">
+    <button data-act="open">Åpne</button>
+    <button data-act="download">Last ned</button>
+    <button data-act="share">Del</button>
+    <button data-act="rename">Gi nytt navn</button>
+    <button data-act="tags">Tags</button>
+    <button data-act="move">Flytt til mappe</button>
+    <button data-act="delete" class="danger">Slett</button>
+  </div>
+  <footer class="site-footer">
+    <div class="inner">
+      <div>© 2025 Media Bank</div>
+      <div class="links">
+        <a href="/about">Om</a>
+        <a href="/safety">Sikkerhet</a>
+        <a href="/api-controls">API</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
